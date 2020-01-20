@@ -10,7 +10,7 @@ docker-compose.yml:
 ```
   #debug-headers
   debug-auth-headers:
-    image: semtech/mu-javascript-template
+    image: redpencil/debug-auth-headers
     ports:
       - 9229:9229
     environment:
