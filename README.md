@@ -32,7 +32,7 @@ GET /get-headers:
 
 returns the headers recived by the service in a JSON format
 
-POST /send-headers:
+POST /send-request:
 
 sends headers and query provided in the JSON body of the request and then returns the servers response in the same structure
 
