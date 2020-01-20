@@ -1,5 +1,4 @@
-import { app, errorHandler, query, express } from 'mu';
-import httpContext from 'express-http-context';
+import { app, errorHandler} from 'mu';
 
 const fetch = require('node-fetch');
 const bodyParser=require('body-parser');
@@ -33,12 +32,18 @@ async function bypassQuery(myQuery, myHeaders, responseType){
   data=uriSerialize(data);
   
   myHeaders['Content-Type']='application/x-www-form-urlencoded'
+  try {
+    var response = await fetch(endPoint, {
+      method: 'POST',
+      headers: myHeaders,
+      body: data
+    });
+  } catch (error) {
+    var body='Database Error';
+    var headers='Database Error';
+    return {body: body, headers: headers};
+  }
   
-  const response = await fetch(endPoint, {
-    method: 'POST',
-    headers: myHeaders,
-    body: data
-  });
 
   var headers=response.headers.raw();
   
@@ -59,7 +64,6 @@ async function bypassQuery(myQuery, myHeaders, responseType){
 }
 
 app.get('/get-headers', function(req, res){
-  //debugger;
   res.send(req.headers);
 });
 
@@ -80,20 +84,8 @@ app.post('/send-request', function(req, res){
 
   var myHeaders=req.body.headers;
   var myQuery=req.body.query;
-  //debugger;
-  // var myHeaders={
-  //   'Content-Type': 'application/x-www-form-urlencoded',
-  //   'mu-auth-allowed-groups': '[{"variables":[],"name":"public"}]'
-  // };
-
-  // var myQuery = `
-  //   SELECT *
-  //     WHERE{
-  //       ?a ?b ?c.
-  //   }LIMIT 100`;
   
   bypassQuery(myQuery, myHeaders, responseTypes[0]).then(function(response){
-    //debugger;
     res.send(response);
   });
 });
