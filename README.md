@@ -6,7 +6,7 @@ This uses (https://github.com/mu-semtech/mu-javascript-template) as a base image
 The front-end part of this tool expects the back-end to be located at /debug-auth-headers
 So add this to your files 
 
-docker-compose.yml:
+`docker-compose.yml`:
 ```
   #debug-headers
   debug-auth-headers:
@@ -18,7 +18,7 @@ docker-compose.yml:
     links:
       - database:database
 ```
-config/dispatcher/dispatcher.ex:
+`config/dispatcher/dispatcher.ex`:
 ```
   #debug-headers
   match "/debug-auth-headers/*path" do
@@ -28,15 +28,15 @@ config/dispatcher/dispatcher.ex:
 # Usage
 There are 2 endpoints
 
-##GET /get-headers:
+## GET /get-headers:
 
 returns the headers recieved by the service in a JSON format
 
-##POST /send-request:
+## POST /send-request:
 
 sends headers and query provided in the JSON body of the request and then returns the servers response in a similat structure
 
-###sample request:
+### sample request:
 ```
 {
   "query": "SELECT (COUNT (?a) as ?count)\nWHERE{\n  ?a ?b ?c.\n}",
@@ -45,7 +45,7 @@ sends headers and query provided in the JSON body of the request and then return
   }
 }
 ```
-###expected response:
+### expected response:
 ```
 {
   "body": {
