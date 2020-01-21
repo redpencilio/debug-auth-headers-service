@@ -36,3 +36,48 @@ POST /send-request:
 
 sends headers and query provided in the JSON body of the request and then returns the servers response in the same structure
 
+sample request:
+```
+{
+  "query": "SELECT (COUNT (?a) as ?count)\nWHERE{\n  ?a ?b ?c.\n}",
+  "headers": {
+    "mu-auth-allowed-groups": "[{\"variables\":[],\"name\":\"public\"}]"
+  }
+}
+```
+expected response:
+```
+{
+  "body": {
+    "results": {
+      "ordered": true,
+      "distinct": false,
+      "bindings": [
+        {
+          "count": {
+            "value": "3043640",
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+          }
+        }
+      ]
+    },
+    "head": {
+      "vars": [
+        "count"
+      ],
+      "link": []
+    }
+  },
+  "headers": {
+    "cache-control": "max-age=0, private, must-revalidate",
+    "connection": "close",
+    "content-length": "201",
+    "content-type": "application/sparql-results+json; charset=utf-8",
+    "date": "Tue, 21 Jan 2020 16:15:14 GMT",
+    "mu-auth-allowed-groups": "[{\"variables\":[],\"name\":\"public\"}]",
+    "mu-auth-used-groups": "[{\"variables\":[],\"name\":\"public\"}]",
+    "server": "Cowboy"
+  }
+}
+```
