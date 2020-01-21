@@ -28,15 +28,15 @@ config/dispatcher/dispatcher.ex:
 # Usage
 There are 2 endpoints
 
-GET /get-headers:
+##GET /get-headers:
 
-returns the headers recived by the service in a JSON format
+returns the headers recieved by the service in a JSON format
 
-POST /send-request:
+##POST /send-request:
 
-sends headers and query provided in the JSON body of the request and then returns the servers response in the same structure
+sends headers and query provided in the JSON body of the request and then returns the servers response in a similat structure
 
-sample request:
+###sample request:
 ```
 {
   "query": "SELECT (COUNT (?a) as ?count)\nWHERE{\n  ?a ?b ?c.\n}",
@@ -45,7 +45,7 @@ sample request:
   }
 }
 ```
-expected response:
+###expected response:
 ```
 {
   "body": {
