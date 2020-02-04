@@ -1,6 +1,6 @@
 # Debug-auth-headers dev tool
 This is a tool to proxy sparql queries and headers from inside the mu.semtech network
-This uses (https://github.com/mu-semtech/mu-javascript-template) as a base image
+This uses (https://github.com/mu-semtech/mu-javascript-template) as a base image.  A corresponding frontend can be found at https://github.com/redpencilio/frontend-debug-auth-headers
 
 # Setup
 The front-end part of this tool expects the back-end to be located at /debug-auth-headers
@@ -11,10 +11,6 @@ So add this to your files
   #debug-headers
   debug-auth-headers:
     image: redpencil/debug-auth-headers
-    ports:
-      - 9229:9229
-    environment:
-      NODE_ENV: "development"
     links:
       - database:database
 ```
