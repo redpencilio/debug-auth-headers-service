@@ -26,11 +26,11 @@ There are 2 endpoints
 
 ## GET /get-headers:
 
-returns the headers recieved by the service in a JSON format
+returns the headers received by the service in a JSON format
 
 ## POST /send-request:
 
-sends headers and query provided in the JSON body of the request and then returns the servers response in a similat structure
+sends headers and query provided in the JSON body of the request and then returns the servers response in a similar structure
 
 ### sample request:
 ```
